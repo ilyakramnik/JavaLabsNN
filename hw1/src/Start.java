@@ -4,22 +4,28 @@ import Console.ConsoleFunctions;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * starter class
+ */
 public class Start {
     ConsoleFunctions input = new Console();
 
+    /**
+     * offers a choice of working with complex numbers or matrices
+     */
     public void start() {
         int action = -1;
         while (action != 0) {
             Scanner in = new Scanner(System.in);
             System.out.print("""
-                    Для работы с комплексными числами введите 1
-                    Для работы с матрицами введите 2
-                    Для завершения работы введите 0
+                    To work with complex numbers enter 1
+                    To work with matrices enter 2
+                    To exit enter 0
                     """);
             try {
                 action = in.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("Некорректный ввод данных. Пожалуйста, попробуйте снова");
+                System.out.println("Incorrect data entry. Please try again");
                 continue;
             }
             switch (action) {
