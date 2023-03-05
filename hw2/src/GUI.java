@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -72,9 +73,13 @@ public class GUI extends JFrame {
      */
     private void analyzeFile(String outputFile) throws IOException {
         if (selectedFile == null) {
-            textArea.setText("No file selected");
-            add(textArea, BorderLayout.CENTER);
-            return;
+            try {
+                throw new FileNotFoundException("File is not selected");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                textArea.setText("Error analyzing file: " + e.getMessage());
+                return;
+            }
         }
 
         FileHandler fileHandler = new FileHandler();
