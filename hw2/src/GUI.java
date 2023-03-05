@@ -52,6 +52,9 @@ public class GUI extends JFrame {
 
         textArea = new JTextArea();
         add(textArea, BorderLayout.CENTER);
+        textArea.setFocusable(false);
+        openFileButton.setFocusable(false);
+        analyzeButton.setFocusable(false);
     }
 
     /**
@@ -59,6 +62,7 @@ public class GUI extends JFrame {
      */
     private void openFile() {
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir") + "/src/files"));
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             selectedFile = fileChooser.getSelectedFile();
@@ -68,6 +72,7 @@ public class GUI extends JFrame {
     /**
      * counts the number of uses of large and small english letters in the file
      * and writes it in the chosen file
+     *
      * @param outputFile file where we want to write the answer
      * @throws IOException if file hasn't found
      */
@@ -89,8 +94,7 @@ public class GUI extends JFrame {
             fileHandler.writeToFile(writer);
             textArea.setText("File analyzed. Results written to " + outputFile);
             add(textArea, BorderLayout.CENTER);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             textArea.setText("Error analyzing file: " + e.getMessage());
             add(textArea, BorderLayout.CENTER);
