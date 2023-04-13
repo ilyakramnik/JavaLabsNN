@@ -56,6 +56,7 @@ public class GUI extends JFrame implements ActionListener {
 
     /**
      * gets all inforamtion from user and outputs it on the screen
+     *
      * @param e the event to be processed
      */
     @Override
@@ -73,13 +74,11 @@ public class GUI extends JFrame implements ActionListener {
                 int age = checkData.getAge(birthDateString);
                 String ageSuffix = checkData.getAgeSuffix(birthDateString, age);
 
-                if (!checkData.isRightInitials(lastName, firstName, patronymic)){
+                if (!checkData.isRightInitials(lastName, firstName, patronymic)) {
                     resultLabel.setText("Некорректные инициалы. Пожалуйста, попробуйте снова");
-                }
-                else if (age < 0){
+                } else if (age < 0) {
                     resultLabel.setText("Такой человек еще не родился :)");
-                }
-                else {
+                } else {
                     resultLabel.setText(lastName + " " + initials + "   " + gender + "   " + age + " " + ageSuffix);
                 }
             } catch (Exception ex) {
